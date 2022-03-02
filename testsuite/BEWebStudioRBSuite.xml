@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Molee Integration Testing" parallel="false">
+
+<test name="Statistica DotNet BE WebStudio RB Testing">
+		<classes>
+			<class name="com.tibco.automation.molee.beWebStudio.PushBEWebStudio" />
+
+
+			<class
+				name="com.tibco.automation.molee.beWebStudio.ImportBEWebStudio" />
+
+			<class
+				name="com.tibco.automation.molee.beWebStudio.PullLocalizedBEWebStudio" />
+		</classes>
+	</test>
+	</suite>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Molee Integration Testing" parallel="false">
+
+<test name="Statistica DotNet Resx RB Testing">
+		<classes>
+			<class name="com.tibco.automation.molee.RCRB.PushStatRCRB" />
+
+
+			<class
+				name="com.tibco.automation.molee.RCRB.ImportRCRB" />
+
+			<class
+				name="com.tibco.automation.molee.RCRB.PullLocalizedRCRB" />
+		</classes>
+	</test>
+	</suite>

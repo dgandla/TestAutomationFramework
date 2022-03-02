@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+<testcase casename="BETEAPROJECT">
+		<projectname>BE-TEA</projectname>
+		<locale>de-DE</locale>
+		<sourcelocale>en_US</sourcelocale>
+		<localemapping>de:de-DE</localemapping>
+		<product>BE</product>
+	</testcase>
+		
+	<testcase casename="18-1">
+ 	<sourcepath>/BETEARB/Source</sourcepath>
+ 	<createsampletext>created --> project id:</createsampletext>
+ 	<pushassertdata>Finished</pushassertdata>
+	</testcase>	
+	<testcase casename="18-2">
+	<targetpath>/BETEARB/Translation</targetpath>
+ 	<assertdata>Finished importing file</assertdata>
+	</testcase>	
+	<testcase casename="18-3">
+	<sourcepath>/BETEARB/Source</sourcepath>
+ 	<targetpath>/BETEARB</targetpath>
+ 	<expectedpath>/BETEARB</expectedpath>
+	</testcase>
+</testcases>

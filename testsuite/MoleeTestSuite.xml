@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Molee migration Testing" parallel="false">
+
+	<parameter name="poolsize" value="10" />
+	<test name="BE-TEA">
+		<classes>
+			<class name="com.tibco.automation.molee.betea.PushBETEARB" />
+			<class name="com.tibco.automation.molee.betea.ImportBETEARB" />
+			<class
+				name="com.tibco.automation.molee.betea.PullLocalizedBETEARB" />
+		</classes>
+	</test>
+	<test name="BE-WebStudio">
+		<classes>
+			<class
+				name="com.tibco.automation.molee.beWebStudio.PushBEWebStudio" />
+			<class
+				name="com.tibco.automation.molee.beWebStudio.ImportBEWebStudio" />
+			<class
+				name="com.tibco.automation.molee.beWebStudio.PullLocalizedBEWebStudio" />
+		</classes>
+	</test>
+
+	<test name="GNH">
+		<classes>
+			<class name="com.tibco.automation.molee.GNH.PushGNHRB" />
+			<class name="com.tibco.automation.molee.GNH.ImportGNHRB" />
+			<class name="com.tibco.automation.molee.GNH.PullLocalizedGNHRB" />
+		</classes>
+	</test>
+	<test name="LiveAppsCaseManager">
+		<classes>
+			<class
+				name="com.tibco.automation.molee.LiveAppsCaseManager.PushLiveAppsCaseManagerRB" />
+			<class
+				name="com.tibco.automation.molee.LiveAppsCaseManager.ImportLiveAppsCaseManagerRB" />
+			<class
+				name="com.tibco.automation.molee.LiveAppsCaseManager.PullLocalizedLiveAppsCaseManagerRB" />
+		</classes>
+	</test>
+	<test name="LiveAppsContextHelp">
+		<classes>
+			<class
+				name="com.tibco.automation.molee.LiveAppsContextHelp.PushLiveAppsContextHelpRB" />
+			<class
+				name="com.tibco.automation.molee.LiveAppsContextHelp.ImportLiveAppsContextHelpRB" />
+			<class
+				name="com.tibco.automation.molee.LiveAppsContextHelp.PullLocalizedLiveAppsContextHelpRB" />
+		</classes>
+	</test>
+
+	<test name="MDM">
+		<classes>
+			<class name="com.tibco.automation.molee.MDM.PushMDMRB" />
+			<class name="com.tibco.automation.molee.MDM.ImportMDMRB" />
+			<class name="com.tibco.automation.molee.MDM.PullLocalizedMDMRB" />
+		</classes>
+	</test>
+
+	<test name="NimbusWebClient">
+		<classes>
+			<class
+				name="com.tibco.automation.molee.NimbusWebClient.PushNimbusWebClientRB" />
+			<class
+				name="com.tibco.automation.molee.NimbusWebClient.ImportNimbusWebClientRB" />
+			<class
+				name="com.tibco.automation.molee.NimbusWebClient.PullLocalizedNimbusWebClientRB" />
+		</classes>
+	</test>
+	<test name="NimbusWebServer">
+
+		<classes>
+			<class
+				name="com.tibco.automation.molee.NimbusWebServer.PushNimbusWebServerRB" />
+			<class
+				name="com.tibco.automation.molee.NimbusWebServer.ImportNimbusWebServerRB" />
+			<class
+				name="com.tibco.automation.molee.NimbusWebServer.PullLocalizedNimbusWebServerRB" />
+		</classes>
+	</test>
+
+	<test name="Rewards">
+
+		<classes>
+			<class name="com.tibco.automation.molee.Rewards.PushRewardsRB" />
+			<class
+				name="com.tibco.automation.molee.Rewards.ImportRewardsRB" />
+			<class
+				name="com.tibco.automation.molee.Rewards.PullLocalizedRewardsRB" />
+		</classes>
+	</test>
+
+	<test name="RewardCSRDocs">
+
+		<classes>
+			<class
+				name="com.tibco.automation.molee.RewardCSRDocs.PushRewardCSRDocsRB" />
+			<class
+				name="com.tibco.automation.molee.RewardCSRDocs.ImportRewardCSRDocsRB" />
+			<class
+				name="com.tibco.automation.molee.RewardCSRDocs.PullLocalizedRewardCSRDocsRB" />
+		</classes>
+	</test>
+	<test name="Statistica">
+		<classes>
+			<class name="com.tibco.automation.molee.RCRB.PushStatRCRB" />
+			<class name="com.tibco.automation.molee.RCRB.ImportRCRB" />
+			<class name="com.tibco.automation.molee.RCRB.PullLocalizedRCRB" />
+
+			<class
+				name="com.tibco.automation.molee.DMIPlainRB.PushStatPlainDMI" />
+			<class
+				name="com.tibco.automation.molee.DMIPlainRB.ImportPlainDMI" />
+			<class
+				name="com.tibco.automation.molee.DMIPlainRB.PullLocalizedPlainDMIRB" />
+
+			<class
+				name="com.tibco.automation.molee.DMIXMLRB.PushStatXMLDMI" />
+			<class name="com.tibco.automation.molee.DMIXMLRB.ImportXMLDMI" />
+			<class
+				name="com.tibco.automation.molee.DMIXMLRB.PullLocalizedXMLDMIRB" />
+
+			<class name="com.tibco.automation.molee.StatXML.PushStatXML" />
+			<class name="com.tibco.automation.molee.StatXML.ImportStatXML" />
+			<class
+				name="com.tibco.automation.molee.StatXML.PullLocalizedStatXMLRB" />
+
+			<class
+				name="com.tibco.automation.molee.StatTEXT.PushStatTextRB" />
+			<class
+				name="com.tibco.automation.molee.StatTEXT.ImportStatTEXT" />
+			<class
+				name="com.tibco.automation.molee.StatTEXT.PullLocalizedStatTEXTRB" />
+
+			<class
+				name="com.tibco.automation.molee.DotNetResxRB.PushDotNetResx" />
+			<class
+				name="com.tibco.automation.molee.DotNetResxRB.ImportDotNetResx" />
+			<class
+				name="com.tibco.automation.molee.DotNetResxRB.PullLocalizedDotNetResxRB" />
+
+			<class
+				name="com.tibco.automation.molee.StatDLGINIT.PushStatDLGINITRB" />
+			<class
+				name="com.tibco.automation.molee.StatDLGINIT.ImportStatDLGINIT" />
+			<class
+				name="com.tibco.automation.molee.StatDLGINIT.PullLocalizedStatDLGINITRB" />
+
+
+		</classes>
+	</test>
+
+	<test name="tibbrAndroid">
+
+		<classes>
+			<class
+				name="com.tibco.automation.molee.tibbrAndroid.PushtibbrAndroidRB" />
+			<class
+				name="com.tibco.automation.molee.tibbrAndroid.ImporttibbrAndroidRB" />
+			<class
+				name="com.tibco.automation.molee.tibbrAndroid.PullLocalizedtibbrAndroidRB" />
+		</classes>
+	</test>
+</suite>
+    

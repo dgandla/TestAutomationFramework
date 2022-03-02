@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testcases>
+<testcase casename="BEWEBSTUDIOPROJECT">
+		<projectname>"BE-NewWebStudio"</projectname>
+		<locale>fr-FR</locale>
+		<sourcelocale>en</sourcelocale>
+		<localemapping>fr:fr-FR</localemapping>
+		<product>BE</product>
+		<sourceregx>.*en.*</sourceregx>
+	</testcase>
+		
+	<testcase casename="19-1">
+ 	<sourcepath>/BEWebstudioRB/Source</sourcepath>
+ 	<createsampletext>created --> project id:</createsampletext>
+ 	<pushassertdata>Finished</pushassertdata>
+	</testcase>	
+	<testcase casename="19-2">
+	<targetpath>/BEWebstudioRB/Translation</targetpath>
+ 	<assertdata>Finished importing file</assertdata>
+	</testcase>	
+	<testcase casename="19-3">
+	<sourcepath>/BEWebstudioRB/Source</sourcepath>
+ 	<targetpath>/BEWebstudioRB</targetpath>
+ 	<expectedpath>/BEWebstudioRB</expectedpath>
+	</testcase>
+</testcases>
