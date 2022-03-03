@@ -19,7 +19,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class Config {
+public class Configaration {
 
 	private static final String filepath = "resources/config.properties";
 	private static HashMap<String, String> propertyMap;
@@ -115,8 +115,8 @@ public class Config {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException {
-		Config con = new Config();
-		for (Map.Entry<String, String> entry : Config.propertyMap.entrySet()) {
+		Configaration con = new Configaration();
+		for (Map.Entry<String, String> entry : Configaration.propertyMap.entrySet()) {
 			System.out.printf("Key : %s -- Value: %s %n", entry.getKey(), entry.getValue());
 
 		}

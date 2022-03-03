@@ -19,7 +19,7 @@ import org.xml.sax.InputSource;
 
 import com.automation.interview.ReadXML.CaseObject;
 import com.automation.interview.ReadXML.DataBean;
-import com.automation.interview.utill.Config;
+import com.automation.interview.utill.Configaration;
 
 public class ReadXmlData {
 	HashMap<String, CaseObject> casesInput = new HashMap<String, CaseObject>();
@@ -49,7 +49,7 @@ public class ReadXmlData {
 
 	private HashMap<String, CaseObject> getData() {
 		try {
-			StringBuilder sb = new StringBuilder(Config.getDataDir()).append(File.separatorChar).append(this.filename);
+			StringBuilder sb = new StringBuilder(Configaration.getDataDir()).append(File.separatorChar).append(this.filename);
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(sb.toString()), "UTF-8"));
 			InputSource is = new InputSource(br);
 			is.setEncoding("UTF-8");
