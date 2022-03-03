@@ -3,15 +3,14 @@ package com.automation.interview.utill;
 import java.io.File;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeSuite;
 
 
 public class AutomationBase {
-	public static WebDriver driver;
+	public WebDriver driver;
 	private StringBuilder screenDir;
 	private int count = 1;
-	public AutomationBase() throws Exception {
-		Config.init();
-	}
+	
 	private String getScreenDir() {
 		if (null == screenDir) {
 			screenDir = new StringBuilder(Config.getScreenOutDir());
@@ -28,6 +27,8 @@ public class AutomationBase {
 		return sb.toString();
 	}
 	
+	
+	
 	public void captureScreen(String filename) {
 		String filePath = buildPath(filename);
 		CaptureScreenshot.capture(driver, filePath);
@@ -40,4 +41,9 @@ public class AutomationBase {
 		return sb.toString();
 	}
 	
+	@BeforeSuite
+	public void Intialize() throws Exception {
+		Config.getDriver();		
+	}
+		
 }

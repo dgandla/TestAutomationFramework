@@ -20,15 +20,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class Config {
-	
+
 	private static final String filepath = "resources/config.properties";
 	private static HashMap<String, String> propertyMap;
 	private static PrintStream out;
 	private static String OS = System.getProperty("os.name").toLowerCase();
-	protected static  String baseCommand = "";
+	protected static String baseCommand = "";
 	public static WebDriver driver;
-	
-	
+
 	public static String getPropValue(String name) {
 		if (null == propertyMap) {
 			init();
@@ -41,35 +40,13 @@ public class Config {
 			return value.trim();
 	}
 
+	private static HashMap<String, String> getconfigMap() {
+		if (null == propertyMap) {
+			init();
+		}
+		return propertyMap;
+	}
 
-	public static String getDataDir() {
-		if (null == propertyMap.get("datafile.dir")) {
-			Log.error("Input Data directory is not set in config.properties.  Use default of 'data'");
-			return "data";
-		} else {
-			return propertyMap.get("datafile.dir");
-		}
-	}
-	
-	public static void init() {
-		File infile = new File(filepath);
-		Properties prop = new Properties();
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(infile), "UTF-8"));
-			prop.load(br);
-		} catch (IOException e) {
-			Log.error(e.toString());
-		}
-		propertyMap = new HashMap<String, String>((Map) prop);
-	}
-	public static String getAppURL() {
-		if (null == getPropValue("app.url")) {
-			Log.error("app.url is not set and it must be set.");
-			return "";
-		} else {
-			return getPropValue("app.url");
-		}
-	}
 	public static String getScreenOutDir() {
 		if (getPropValue("screen.outdir").equals("")) {
 			StringBuilder sb = new StringBuilder(System.getProperty("user.dir"));
@@ -81,44 +58,67 @@ public class Config {
 			return propertyMap.get("screen.outdir");
 		}
 	}
+
+	public static String getDataDir() {
+		if (null == propertyMap.get("datafile.dir")) {
+			Log.error("Input Data directory is not set in config.properties.  Use default of 'data'");
+			return "data";
+		} else {
+			return propertyMap.get("datafile.dir");
+		}
+	}
+
+	public static void init() {
+		File infile = new File(filepath);
+		Properties prop = new Properties();
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(infile), "UTF-8"));
+			prop.load(br);
+		} catch (IOException e) {
+			Log.error(e.toString());
+		}
+		propertyMap = new HashMap<String, String>((Map) prop);
+	}
+
+	public static String getAppURL() {
+		if (null == getPropValue("app.url")) {
+			Log.error("app.url is not set and it must be set.");
+			return "";
+		} else {
+			return getPropValue("app.url");
+		}
+	}
+
 	public static WebDriver getDriver() {
 		String browser = getPropValue("test.browser");
-		
-		 if (browser.equalsIgnoreCase("chrome")) {
+
+		if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", propertyMap.get("driver.path"));
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--headless");
-			 options.addArguments("--start-maximized");
-		     driver = new ChromeDriver(options);
-		}else if (browser.equalsIgnoreCase("firefox"))  {
-			
+			options.addArguments("--start-maximized");
+			driver = new ChromeDriver(options);
+			driver.get(propertyMap.get("app.url"));
+		} else if (browser.equalsIgnoreCase("firefox")) {
+
 			System.setProperty("webdriver.firefox.marionette", propertyMap.get("driver.path"));
 			FirefoxOptions options = new FirefoxOptions();
-			//options.addArguments("--headless");
-			
-			//Instantiate Web Driver
-			//options.setBinary(propertyMap.get("driver.path"));
-			 driver = new FirefoxDriver(options);
-			// driver = new FirefoxDriver();
+			driver = new FirefoxDriver(options);
 		} else if (browser.equalsIgnoreCase("edge")) {
 			System.setProperty("webdriver.edge.driver", propertyMap.get("driver.path"));
 			EdgeOptions options = new EdgeOptions();
 			driver = new EdgeDriver();
 		} else if (browser.isEmpty()) {
-			
 			Log.error("Enter the browser need to use for automation");
-			
 		}
-		
+
 		return driver;
 	}
 
-
 	public static void main(String[] args) throws FileNotFoundException {
 		Config con = new Config();
-		for (Map.Entry<String, String> entry : con.propertyMap.entrySet()) {
+		for (Map.Entry<String, String> entry : Config.propertyMap.entrySet()) {
 			System.out.printf("Key : %s -- Value: %s %n", entry.getKey(), entry.getValue());
-			
+
 		}
-	}	
+	}
 }
