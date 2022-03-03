@@ -1,7 +1,6 @@
 package com.automation.interview.page.registration;
 
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -17,87 +16,66 @@ public class CreateAccountPage extends Configaration {
 	}
 
 	@FindBy(xpath = "//input[contains(@id,'customer_firstname')]")
-	@CacheLookup
 	private WebElement CustomerFirstName;
 
 	@FindBy(xpath = "//input[contains(@id,'customer_lastname')]")
-	@CacheLookup
 	private WebElement CustomerLastName;
 
 	@FindBy(xpath = "//input[contains(@id,'passwd')]")
-	@CacheLookup
 	private WebElement Password;
 
 	@FindBy(xpath = "//input[contains(@id,'address1')]")
-	@CacheLookup
 	private WebElement Address;
 
 	@FindBy(xpath = "//input[contains(@id,'email')]")
-	@CacheLookup
 	private WebElement EmailInputFeild;
 
 	@FindBy(xpath = "//input[contains(@id,'postcode')]")
-	@CacheLookup
 	private WebElement ZipCodeInputFeild;
 
 	@FindBy(xpath = "//input[contains(@id,'phone')]")
-	@CacheLookup
 	private WebElement HomePhoneInputFeild;
 
 	@FindBy(xpath = "//input[contains(@id,'phone_mobile')]")
-	@CacheLookup
 	private WebElement MobilePhoneInputFeild;
 
 	@FindBy(xpath = "//button[@id='submitAccount']")
-	@CacheLookup
 	private WebElement RegisterButton;
 
 	@FindBy(xpath = "//p[contains(text(),'There are 8 errors')]")
-	@CacheLookup
 	private WebElement ReturingAllErrorMessages;
 
 	@FindBy(xpath = "//li[contains(text(), ' is invalid.')]/b[contains(text(), 'email')]")
-	@CacheLookup
 	private WebElement InvalidEmailErrorMessages;
 
 	@FindBy(xpath = "//li[contains(text(), ' is invalid.')]/b[contains(text(), 'passwd')]")
-	@CacheLookup
 	private WebElement InvalidPasswordErrorMessages;
 
 	@FindBy(xpath = "//li[contains(text(), ' is invalid.')]/b[contains(text(), 'phone')]")
-	@CacheLookup
 	private WebElement InvalidHomePhoneErrorMessages;
 
 	@FindBy(xpath = "//li[contains(text(), ' is invalid.')]/b[contains(text(), 'phone_mobile')]")
-	@CacheLookup
 	private WebElement InvalidMobilePhoneErrorMessages;
 
 	@FindBy(xpath = "//li[contains(text(), 'The Zip/Postal code you')]")
-	@CacheLookup
 	private WebElement InvalidZipCodeErrorMessages;
 
 	@FindBy(xpath = "//select[@id='days']")
-	@CacheLookup
 	private WebElement DateDropDown;
 
 	@FindBy(xpath = "//select[@id='months']")
-	@CacheLookup
 	private WebElement MonthDropDown;
 
 	@FindBy(xpath = "//select[@id='years']")
-	@CacheLookup
 	private WebElement YearDropDown;
 
 	@FindBy(xpath = "//input[@id='city']")
-	@CacheLookup
 	private WebElement City;
 
 	@FindBy(xpath = "//select[@id='id_state']")
-	@CacheLookup
 	private WebElement State;
 
 	@FindBy(xpath = "//input[@id='alias']")
-	@CacheLookup
 	private WebElement AddressAlias;
 
 	public void enterFirstName(String firstName) {
