@@ -1,4 +1,3 @@
-
 package com.automation.interview.utill;
 
 import org.testng.log4testng.Logger;

@@ -2,19 +2,23 @@ package com.automation.interview.utill;
 
 import java.io.File;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 
 public class AutomationBase {
-	public static WebDriver driver;
+	public WebDriver driver;
 	private StringBuilder screenDir;
 	private int count = 1;
-	public AutomationBase() throws Exception {
-		Config.init();
-	}
+	
 	private String getScreenDir() {
 		if (null == screenDir) {
-			screenDir = new StringBuilder(Config.getScreenOutDir());
+			screenDir = new StringBuilder(Configaration.getScreenOutDir());
 			File dir = new File(screenDir.toString());
 			if (!(dir.exists()))
 				dir.mkdirs();
@@ -28,6 +32,8 @@ public class AutomationBase {
 		return sb.toString();
 	}
 	
+	
+	
 	public void captureScreen(String filename) {
 		String filePath = buildPath(filename);
 		CaptureScreenshot.capture(driver, filePath);
@@ -40,4 +46,16 @@ public class AutomationBase {
 		return sb.toString();
 	}
 	
+	public static WebElement waitForElementPresence(WebDriver driver, WebElement webElement, int waitInterval) {
+		WebElement element = (new WebDriverWait(driver, waitInterval)).until(ExpectedConditions.visibilityOf(webElement));
+		return element;
+	}
+	
+	@AfterSuite
+	
+	public void close() {
+		driver.close();
+	}
+	
+		
 }
