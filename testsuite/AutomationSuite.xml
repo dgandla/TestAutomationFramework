@@ -18,5 +18,11 @@
 				name="com.automation.interview.test.shoppingTest.shoppingFlowTest" />
 		</classes>
 	</test>
+	<test name="ContactUs">
+		<classes>
+			<class
+				name="com.automation.interview.test.ContactUs.ContactUsTest" />
+		</classes>
+	</test>
 </suite>
     

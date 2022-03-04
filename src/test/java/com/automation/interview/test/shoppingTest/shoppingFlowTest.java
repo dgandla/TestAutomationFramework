@@ -18,7 +18,6 @@ import com.automation.interview.utill.Configaration;
 public class shoppingFlowTest extends Configaration {
 
 	private static final String LoginDataFile = "SignInData.xml";
-	private DataBean emailId;
 	private DataBean passsword;
 	private Actions action;
 	RegistrationPage rp;
@@ -33,7 +32,6 @@ public class shoppingFlowTest extends Configaration {
 		action = new Actions(driver);
 		selectClothesPage = new selectClothes();
 		ReadXmlData inputData = new ReadXmlData(LoginDataFile);
-		emailId = inputData.getDataBean("Login", "email");
 		passsword = inputData.getDataBean("Login", "password");
 	}
 
@@ -45,7 +43,7 @@ public class shoppingFlowTest extends Configaration {
 	@Test(priority = 1)
 	public void selectClotes() {
 		rp.signInButton();
-		signInPage.enterEmail(emailId.getValue());
+		signInPage.enterEmail(Configaration.getUserName());
 		signInPage.enterPassword(passsword.getValue());
 		signInPage.clickLoginButton();
 		Assert.assertTrue(signInPage.validateSucessLogin().isDisplayed());

@@ -19,7 +19,6 @@ public class SignInTest {
 	public class RegistrationTest extends Configaration {
 
 		private static final String LoginDataFile = "SignInData.xml";
-		private DataBean emailId;
 		private DataBean passsword;
 		private DataBean invalidEmail;
 		private DataBean invalidPassword;
@@ -35,7 +34,6 @@ public class SignInTest {
 			signInPage = new SignInPage();
 			createAccount = new CreateAccountPage();
 			ReadXmlData inputData = new ReadXmlData(LoginDataFile);
-			emailId = inputData.getDataBean("Login", "email");
 			passsword = inputData.getDataBean("Login", "password");
 			invalidEmail = inputData.getDataBean("Login", "invalidemail");
 			invalidPassword = inputData.getDataBean("Login", "invalidpassword");
@@ -64,7 +62,7 @@ public class SignInTest {
 
 			// Click with password is Empty
 
-			signInPage.enterEmail(emailId.getValue());
+			signInPage.enterEmail(Configaration.getUserName());
 			signInPage.clickLoginButton();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			Assert.assertTrue(signInPage.passwordRequriedErrorMassage().isDisplayed());
@@ -87,7 +85,7 @@ public class SignInTest {
 
 			// Enter Invalid Password
 
-			signInPage.enterEmail(emailId.getValue());
+			signInPage.enterEmail(Configaration.getUserName());
 			signInPage.enterPassword(invalidPassword.getValue());
 			signInPage.clickLoginButton();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -108,7 +106,7 @@ public class SignInTest {
 
 		@Test(priority = 6)
 		private void validateSignInPageWithValidCredentails() throws InterruptedException {
-			signInPage.enterEmail(emailId.getValue());
+			signInPage.enterEmail(Configaration.getUserName());
 			signInPage.enterPassword(passsword.getValue());
 			signInPage.clickLoginButton();
 			Assert.assertTrue(signInPage.validateSucessLogin().isDisplayed());
