@@ -141,7 +141,7 @@ public class Configaration {
 		in.close();
 
 		FileOutputStream out = new FileOutputStream("resources/config.properties");
-		props.setProperty("emailid", generatedString + "@gmail.com");
+		//props.setProperty("emailid", generatedString + "@gmail.com");
 		props.store(out, null);
 		out.close();
 	}

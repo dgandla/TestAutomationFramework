@@ -16,7 +16,7 @@ import com.automation.interview.utill.Configaration;
 public class RegistrationTest extends Configaration {
 
 	private static final String RegisterDataFile = "RegisterAUser.xml";
-	private DataBean emailId;
+	private DataBean inValidEmailId;
 	private DataBean signPageAssertaion;
 	private DataBean registeredEmail;
 	private DataBean lastName;
@@ -45,7 +45,7 @@ public class RegistrationTest extends Configaration {
 		createAccount = new CreateAccountPage();
 		ReadXmlData inputData = new ReadXmlData(RegisterDataFile);
 		signPageAssertaion = inputData.getDataBean("Assertions", "signpageassertaion");
-		emailId = inputData.getDataBean("CreateAccount", "emailid");
+		inValidEmailId = inputData.getDataBean("CreateAccount", "emailid");
 		registeredEmail = inputData.getDataBean("CreateAccount", "registeredemail");
 		lastName = inputData.getDataBean("CreateAccountForm", "lastName");
 		firstName = inputData.getDataBean("CreateAccountForm", "firstname");
@@ -84,7 +84,7 @@ public class RegistrationTest extends Configaration {
 	@Test(priority = 2)
 	private void createAnAccount() throws InterruptedException {
 		// Passing incorrect Email
-		rp.emaiLTextBox(emailId.getValue());
+		rp.emaiLTextBox(inValidEmailId.getValue());
 		rp.createAccountButton();
 		String brColorError = rp.highlatedTextFeild().getCssValue("background-color");
 		Assert.assertEquals(brColorError, "rgba(255, 241, 242, 1)");
@@ -120,7 +120,7 @@ public class RegistrationTest extends Configaration {
 	
 	@Test(priority = 4)
 	private void verifyingFormateOfTextFeilds() throws InterruptedException {
-		createAccount.enterEmail(emailId.getValue());
+		createAccount.enterEmail(inValidEmailId.getValue());
 		createAccount.enterZipCode(zipCodeInvalid.getValue());
 		createAccount.enterHomePhone(homePhoneInvalid.getValue());
 		createAccount.enterMobilePhone(mobilePhoneInvalid.getValue());

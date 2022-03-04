@@ -56,6 +56,9 @@ public class selectClothes extends Configaration {
 	@FindBy(xpath = "//a[contains(@title,'View my shopping cart')]")
 	private WebElement ShoppingCart;
 	
+	@FindBy(xpath = "//dic[contains(@class,'cart_block block exclusive')]")
+	private WebElement ShoppingCartBlock;
+	
 	@FindBy(xpath = "//a[@class='button btn btn-default standard-checkout button-medium']")
 	private WebElement ProceedToCheckOut;
 	
@@ -82,6 +85,12 @@ public class selectClothes extends Configaration {
 	
 	@FindBy(xpath = "//button[contains(@class,'button btn btn-default standard-checkout button-medium')]")
 	private WebElement ShippingProceedToCheckout;
+	
+	@FindBy(xpath = "//h5[contains(@itemprop,'name')]//a[contains(@class,'product-name')]")
+	private WebElement ProductName;
+	
+	@FindBy(xpath = "//div[contains(@class,'right-block')]//span[contains(@class,'price product-price')]")
+	private WebElement ProductPrice;
 	
 
 	public void DoPayment() {
@@ -140,6 +149,18 @@ public class selectClothes extends Configaration {
 		return AutomationBase.waitForElementPresence(driver, ShoppingCart, 30);
 	}
 	
+	public WebElement selectShoppingCartBlock() {
+		return AutomationBase.waitForElementPresence(driver, ShoppingCartBlock, 30);
+	}
+	
+	public WebElement fetchProductName() {
+		return AutomationBase.waitForElementPresence(driver, ProductName, 30);
+	}
+	
+	public WebElement fetchPrice() {
+		return AutomationBase.waitForElementPresence(driver, ProductPrice, 30);
+	}
+	
 	public void clickCasualDressCatagory() {
 		CasualDressCatagory.click();
 	}
@@ -171,6 +192,10 @@ public class selectClothes extends Configaration {
 	
 	public void clickCheckOutButton() {
 		CheckoutButton.click();
+	}
+	
+	public WebElement veifyCheckOutButton() {
+		return AutomationBase.waitForElementPresence(driver, CheckoutButton, 30);
 	}
 	
 	public WebElement veifyQuantityInCart() {
