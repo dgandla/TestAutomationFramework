@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Automation Testing" parallel="false">
+<suite name="Automation Testing">
 	<test name="Registration">
 		<classes>
-			<class name="com.automation.interview.test.registration.RegistrationTest" />
+			<class
+				name="com.automation.interview.test.registration.RegistrationTest" />
+		</classes>
+	</test>
+	<test name="SignIN">
+		<classes>
+			<class name="com.automation.interview.test.SignIn.SignInTest" />
+		</classes>
+	</test>
+	<test name="ShoppingFlowTest">
+		<classes>
+			<class
+				name="com.automation.interview.test.shoppingTest.shoppingFlowTest" />
 		</classes>
 	</test>
 </suite>

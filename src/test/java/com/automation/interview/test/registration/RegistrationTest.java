@@ -132,28 +132,6 @@ public class RegistrationTest extends Configaration {
 		String bgColorPasswordError = createAccount.behaviorOfPasswordTextBox().getCssValue("background-color");
 		Assert.assertEquals(bgColorPasswordError, "rgba(255, 241, 242, 1)");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-		/*
-		 * //Veryfying the Format createAccount.enterEmail(emailId.getValue());
-		 * createAccount.enterZipCode(zipCodeInvalid.getValue());
-		 * createAccount.enterHomePhone(homePhoneInvalid.getValue());
-		 * createAccount.enterMobilePhone(mobilePhoneInvalid.getValue());
-		 * createAccount.enterPassword(passwordInvalid.getValue());
-		 * createAccount.clickRegisterButton();
-		 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 * 
-		 * Assert.assertTrue(createAccount.returingInvalidEmailErrorMessages().
-		 * isDisplayed());
-		 * Assert.assertTrue(createAccount.returingInvalidPasswordErrorMessages().
-		 * isDisplayed());
-		 * Assert.assertTrue(createAccount.returingInvalidHomePhoneErrorMessages().
-		 * isDisplayed());
-		 * Assert.assertTrue(createAccount.returingInvalidMobilePhoneErrorMessages().
-		 * isDisplayed());
-		 * Assert.assertTrue(createAccount.returingInvalidZipCodeErrorMessages().
-		 * isDisplayed()); driver.navigate().refresh();
-		 */
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Test(priority = 4)
@@ -172,7 +150,7 @@ public class RegistrationTest extends Configaration {
 		createAccount.enterMobilePhone(mobilePhone.getValue());
 		createAccount.enterAddressAlias(addressAlias.getValue());
 		createAccount.clickRegisterButton();
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
 	}
 
