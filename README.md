@@ -2,9 +2,11 @@
 Steps to Execute the Automation Cases
 
 Prerequisite
+
 •	Change the Directory paths in the config.properties under Resources Directory
 
 Steps to Execute from Console
+
 •	Checkout the Master (Main) branch 
 •	Execute the “mvn clean package”
 
