@@ -134,14 +134,14 @@ public class Configaration {
 		int length = 5;
 		boolean useLetters = true;
 		boolean useNumbers = false;
-		String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+		String generatedString = RandomStringUtils.random(length, useLetters, useNumbers).toLowerCase();
 		FileInputStream in = new FileInputStream("resources/config.properties");
 		Properties props = new Properties();
 		props.load(in);
 		in.close();
 
 		FileOutputStream out = new FileOutputStream("resources/config.properties");
-		//props.setProperty("emailid", generatedString + "@gmail.com");
+		props.setProperty("emailid", generatedString + "@gmail.com");
 		props.store(out, null);
 		out.close();
 	}
