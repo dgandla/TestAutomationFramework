@@ -4,13 +4,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,6 +22,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.annotations.BeforeSuite;
 
 public class Configaration {
 
@@ -61,10 +66,19 @@ public class Configaration {
 
 	public static String getDataDir() {
 		if (null == propertyMap.get("datafile.dir")) {
-			Log.error("Input Data directory is not set in config.properties.  Use default of 'data'");
+			Log.error("Input Data directory is not set in config.properties. ");
 			return "data";
 		} else {
 			return propertyMap.get("datafile.dir");
+		}
+	}
+	
+	public static String getUserName() {
+		if (null == propertyMap.get("emailid")) {
+			Log.error("Input Email is not set in config.properties. ");
+			return "data";
+		} else {
+			return propertyMap.get("emailid");
 		}
 	}
 
@@ -112,6 +126,24 @@ public class Configaration {
 		}
 
 		return driver;
+	}
+
+	@BeforeSuite
+	public void createRandomUserName() throws IOException {
+
+		int length = 5;
+		boolean useLetters = true;
+		boolean useNumbers = false;
+		String generatedString = RandomStringUtils.random(length, useLetters, useNumbers).toLowerCase();
+		FileInputStream in = new FileInputStream("resources/config.properties");
+		Properties props = new Properties();
+		props.load(in);
+		in.close();
+
+		FileOutputStream out = new FileOutputStream("resources/config.properties");
+		props.setProperty("emailid", generatedString + "@gmail.com");
+		props.store(out, null);
+		out.close();
 	}
 
 	public static void main(String[] args) throws FileNotFoundException {

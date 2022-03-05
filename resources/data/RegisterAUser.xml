@@ -3,7 +3,6 @@
 	<testcase casename="CreateAccount">
 		<emailid>dinezh@xyz</emailid>
 		<registeredemail>xyz@gmail.com</registeredemail>
-		<newemail>dinezh1@gmail.com</newemail>
 	</testcase>
 
 	<testcase casename="Assertions">

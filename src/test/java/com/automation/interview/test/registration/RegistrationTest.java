@@ -16,10 +16,9 @@ import com.automation.interview.utill.Configaration;
 public class RegistrationTest extends Configaration {
 
 	private static final String RegisterDataFile = "RegisterAUser.xml";
-	private DataBean emailId;
+	private DataBean inValidEmailId;
 	private DataBean signPageAssertaion;
 	private DataBean registeredEmail;
-	private DataBean newEmail;
 	private DataBean lastName;
 	private DataBean firstName;
 	private DataBean password;
@@ -46,9 +45,8 @@ public class RegistrationTest extends Configaration {
 		createAccount = new CreateAccountPage();
 		ReadXmlData inputData = new ReadXmlData(RegisterDataFile);
 		signPageAssertaion = inputData.getDataBean("Assertions", "signpageassertaion");
-		emailId = inputData.getDataBean("CreateAccount", "emailid");
+		inValidEmailId = inputData.getDataBean("CreateAccount", "emailid");
 		registeredEmail = inputData.getDataBean("CreateAccount", "registeredemail");
-		newEmail = inputData.getDataBean("CreateAccount", "newemail");
 		lastName = inputData.getDataBean("CreateAccountForm", "lastName");
 		firstName = inputData.getDataBean("CreateAccountForm", "firstname");
 		password = inputData.getDataBean("CreateAccountForm", "password");
@@ -65,7 +63,9 @@ public class RegistrationTest extends Configaration {
 		state = inputData.getDataBean("CreateAccountForm", "state");
 		mobilePhone = inputData.getDataBean("CreateAccountForm", "mobilephone");
 		addressAlias = inputData.getDataBean("CreateAccountForm", "addressalias");
-
+		rp.chekforElementPrecence();
+		rp.signInButton();
+		
 	}
 
 	@AfterClass
@@ -75,8 +75,6 @@ public class RegistrationTest extends Configaration {
 
 	@Test(priority = 1)
 	private void validateSignInPage() throws InterruptedException {
-		rp.chekforElementPrecence();
-		rp.signInButton();
 		String authenticationPage = rp.autheticationText();
 		Assert.assertEquals(authenticationPage, signPageAssertaion.getAssertValue());
 	}
@@ -86,7 +84,7 @@ public class RegistrationTest extends Configaration {
 	@Test(priority = 2)
 	private void createAnAccount() throws InterruptedException {
 		// Passing incorrect Email
-		rp.emaiLTextBox(emailId.getValue());
+		rp.emaiLTextBox(inValidEmailId.getValue());
 		rp.createAccountButton();
 		String brColorError = rp.highlatedTextFeild().getCssValue("background-color");
 		Assert.assertEquals(brColorError, "rgba(255, 241, 242, 1)");
@@ -98,29 +96,14 @@ public class RegistrationTest extends Configaration {
 		Assert.assertEquals(brColor, "rgba(221, 249, 225, 1)");
 		Assert.assertTrue(rp.exsistingEmailIdErrorMessage().isDisplayed());
 		// Passing a new email ID
-		rp.emaiLTextBox(newEmail.getValue());
+		rp.emaiLTextBox(Configaration.getUserName());
 		rp.createAccountButton();
 		Assert.assertTrue(rp.displayCreateAnAccountForm().isDisplayed());
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
-
+	
 	@Test(priority = 3)
-	private void createAccountFormNegitiveTest() throws InterruptedException {
-
-		// passing Basic values
-		createAccount.enterFirstName(firstName.getValue());
-		createAccount.enterLastName(lastName.getValue());
-		createAccount.enterPassword(password.getValue());
-		rp.displayCreateAnAccountForm().click();
-		String bgColorFirstName = createAccount.behaviorOfFirstNameTextBox().getCssValue("background-color");
-		Assert.assertEquals(bgColorFirstName, "rgba(221, 249, 225, 1)");
-		String bgColorLastName = createAccount.behaviorOfFirstNameTextBox().getCssValue("background-color");
-		Assert.assertEquals(bgColorLastName, "rgba(221, 249, 225, 1)");
-		String bgColorPassword = createAccount.behaviorOfPasswordTextBox().getCssValue("background-color");
-		Assert.assertEquals(bgColorPassword, "rgba(221, 249, 225, 1)");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-		// Passing empty Values
+	private void createAccountWithEmptyFeilds() throws InterruptedException {
 		createAccount.enterFirstName("");
 		createAccount.enterLastName("");
 		createAccount.enterPassword("");
@@ -132,35 +115,48 @@ public class RegistrationTest extends Configaration {
 		String bgColorPasswordError = createAccount.behaviorOfPasswordTextBox().getCssValue("background-color");
 		Assert.assertEquals(bgColorPasswordError, "rgba(255, 241, 242, 1)");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-		/*
-		 * //Veryfying the Format createAccount.enterEmail(emailId.getValue());
-		 * createAccount.enterZipCode(zipCodeInvalid.getValue());
-		 * createAccount.enterHomePhone(homePhoneInvalid.getValue());
-		 * createAccount.enterMobilePhone(mobilePhoneInvalid.getValue());
-		 * createAccount.enterPassword(passwordInvalid.getValue());
-		 * createAccount.clickRegisterButton();
-		 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 * 
-		 * Assert.assertTrue(createAccount.returingInvalidEmailErrorMessages().
-		 * isDisplayed());
-		 * Assert.assertTrue(createAccount.returingInvalidPasswordErrorMessages().
-		 * isDisplayed());
-		 * Assert.assertTrue(createAccount.returingInvalidHomePhoneErrorMessages().
-		 * isDisplayed());
-		 * Assert.assertTrue(createAccount.returingInvalidMobilePhoneErrorMessages().
-		 * isDisplayed());
-		 * Assert.assertTrue(createAccount.returingInvalidZipCodeErrorMessages().
-		 * isDisplayed()); driver.navigate().refresh();
-		 */
+		
+	}
+	
+	@Test(priority = 4)
+	private void verifyingFormateOfTextFeilds() throws InterruptedException {
+		createAccount.enterEmail(inValidEmailId.getValue());
+		createAccount.enterZipCode(zipCodeInvalid.getValue());
+		createAccount.enterHomePhone(homePhoneInvalid.getValue());
+		createAccount.enterMobilePhone(mobilePhoneInvalid.getValue());
+		createAccount.enterPassword(passwordInvalid.getValue());
+		createAccount.clickRegisterButton();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		Assert.assertTrue(createAccount.returingInvalidEmailErrorMessages().isDisplayed());
+		Assert.assertTrue(createAccount.returingInvalidPasswordErrorMessages().isDisplayed());
+		Assert.assertTrue(createAccount.returingInvalidHomePhoneErrorMessages().isDisplayed());
+		Assert.assertTrue(createAccount.returingInvalidMobilePhoneErrorMessages().isDisplayed());
+		Assert.assertTrue(createAccount.returingInvalidZipCodeErrorMessages().isDisplayed());
+		
+	}
+	
+	@Test(priority = 5)
+	private void verifyingTextFeildsWithBasicValidData() throws InterruptedException {
+		createAccount.enterFirstName(firstName.getValue());
+		createAccount.enterLastName(lastName.getValue());
+		createAccount.enterPassword(password.getValue());
+		rp.displayCreateAnAccountForm().click();
+		String bgColorFirstName = createAccount.behaviorOfFirstNameTextBox().getCssValue("background-color");
+		Assert.assertEquals(bgColorFirstName, "rgba(221, 249, 225, 1)");
+		String bgColorLastName = createAccount.behaviorOfFirstNameTextBox().getCssValue("background-color");
+		Assert.assertEquals(bgColorLastName, "rgba(221, 249, 225, 1)");
+		String bgColorPassword = createAccount.behaviorOfPasswordTextBox().getCssValue("background-color");
+		Assert.assertEquals(bgColorPassword, "rgba(221, 249, 225, 1)");
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
-	@Test(priority = 4)
+	
+	@Test(priority = 6)
 	private void createAccountForm() throws InterruptedException {
 		createAccount.enterFirstName(firstName.getValue());
 		createAccount.enterLastName(lastName.getValue());
-		createAccount.enterEmail(newEmail.getValue());
+		createAccount.enterEmail(Configaration.getUserName());
 		createAccount.enterPassword(password.getValue());
 		createAccount.selectDoBDate(dobDay.getValue());
 		createAccount.selectDoBMonth(dobMonth.getValue());
@@ -170,9 +166,9 @@ public class RegistrationTest extends Configaration {
 		createAccount.selectState(state.getValue());
 		createAccount.enterZipCode(zipCode.getValue());
 		createAccount.enterMobilePhone(mobilePhone.getValue());
+		createAccount.enterHomePhone("");
 		createAccount.enterAddressAlias(addressAlias.getValue());
 		createAccount.clickRegisterButton();
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
 	}
 
